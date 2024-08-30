@@ -1,0 +1,40 @@
+{% extends "loctechstudents/base.html" %}
+
+{% block basecontent %}
+<h1> Loctech student table</h1>
+<table class="table table-borderless">
+    <thead class="border bottom font-weight-bold">
+        <tr>
+            <td>name</td>
+            <td>email</td>
+            <td>course</td>
+            <td>instructor</td> 
+            <td>
+                <a href="{% url 'student_reg' %}" class="btn btn-outline-danger">
+                    <i class="fas fa-plus"></i>Add New
+                </a>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.name }}</td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.course }}</td>
+            <td>{{ student.instructor }}</td>
+            <td>
+                <a href="{% url 'student_update' student.student_id %}" class="btn text-secondary px-0">
+                    <i class="far fa-edit fa-lg"></i>
+                </a>
+                <form action="{% url 'student_delete' student.pk %}" method="post" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn text-danger px-0">
+                        <i class="far fa-trash-alt fa-lg"></i>
+                    </button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+</table>
+{% endblock basecontent %}
