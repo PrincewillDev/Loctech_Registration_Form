@@ -11,25 +11,6 @@ def student_list(request):
     }
     return render(request, 'formApp/templates/loctechstudents/std_table.html', context)
 
-# This is the view function for the student registration form
-# def student_reg(request, student_id=None):
-#     if request.method == 'GET':
-#         if student_id == None:
-#             form = StudentForm()
-#         else:
-#             student = StudentReg.objects.get(pk=student_id)
-#             form = StudentForm(instance=student) 
-#         return render(request, 'formApp/templates/loctechstudents/reg_form.html', {'form': form})
-#     else:   
-#         if student_id == 0:
-#             form = StudentForm(request.POST, request.FILES)
-#         else:
-#             student = StudentReg.objects.get(pk=student_id)
-#             form = StudentForm(request.POST, request.FILES, instance=student)
-#         if form.is_valid():
-#             form.save()
-#         return redirect('list/')
-
 def student_reg(request, student_id=0):
     if request.method == 'GET':
         if student_id == 0:
